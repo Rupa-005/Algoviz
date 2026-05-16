@@ -5,8 +5,9 @@ let currentAlgo = 'bubble';
 let array = [];
 let steps = [];
 let stepIdx = 0;
-let running = false;
 let paused = false;
+let running = false;
+
 let animTimer = null;
 let startTime = 0;
 let comparisons = 0;

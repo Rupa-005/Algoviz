@@ -93,9 +93,9 @@ public class AlgoViz {
         return i + 1;
     }
 
-    // ────────────────────────────────────────
+   
     //  6. LINEAR SEARCH  — O(n) time  O(1) space
-    // ────────────────────────────────────────
+  
     public static int linearSearch(int[] arr, int target) {
         for (int i = 0; i < arr.length; i++)
             if (arr[i] == target) return i;
@@ -107,12 +107,12 @@ public class AlgoViz {
     //     Array must be sorted
     // ────────────────────────────────────────
     public static int binarySearch(int[] arr, int target) {
-        int lo = 0, hi = arr.length - 1;
-        while (lo <= hi) {
-            int mid = (lo + hi) / 2;
+        int low = 0, high = arr.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
             if (arr[mid] == target) return mid;
-            else if (arr[mid] < target) lo = mid + 1;
-            else hi = mid - 1;
+            else if (arr[mid] < target) low = mid + 1;
+            else high = mid - 1;
         }
         return -1;
     }

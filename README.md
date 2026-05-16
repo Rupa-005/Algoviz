@@ -34,8 +34,9 @@ The project provides an easy and interactive way to learn sorting algorithms, gr
 - Bubble Sort
 - Selection Sort
 - Insertion Sort
-- Merge Sort
 - Quick Sort
+- Merge Sort
+
 
 ## Data Structures
 - Linked List
