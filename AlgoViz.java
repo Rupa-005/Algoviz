@@ -1,15 +1,12 @@
 import java.util.*;
 
-// ═══════════════════════════════════════════════════════════
-//  AlgoViz.java  —  All DSA Implementations in Java
-//  Matches the AlgoViz visualizer (algoviz.html)
-// ═══════════════════════════════════════════════════════════
+
 
 public class AlgoViz {
 
-    // ────────────────────────────────────────
+    
     //  1. BUBBLE SORT  — O(n²) time  O(1) space
-    // ────────────────────────────────────────
+    
     public static void bubbleSort(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
@@ -23,23 +20,23 @@ public class AlgoViz {
         }
     }
 
-    // ────────────────────────────────────────
+    
     //  2. SELECTION SORT  — O(n²) time  O(1) space
-    // ────────────────────────────────────────
+   
     public static void selectionSort(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
-            int minIdx = i;
+            int minidx = i;
             for (int j = i + 1; j < n; j++) {
-                if (arr[j] < arr[minIdx]) minIdx = j;
+                if (arr[j] < arr[minidx]) minidx = j;
             }
-            int tmp = arr[i]; arr[i] = arr[minIdx]; arr[minIdx] = tmp;
+            int tmp = arr[i]; arr[i] = arr[minidx]; arr[minidx] = tmp;
         }
     }
 
-    // ────────────────────────────────────────
+    
     //  3. INSERTION SORT  — O(n²) time  O(1) space
-    // ────────────────────────────────────────
+    
     public static void insertionSort(int[] arr) {
         int n = arr.length;
         for (int i = 1; i < n; i++) {
