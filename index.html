@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AlgoViz — DSA Visualizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="logo">ALGOVIZ <span>// DSA VISUALIZER v2.0</span></div>
+  <div class="header-right">
+    <div class="status-dot"></div>
+    <div class="status-text" id="statusText">READY</div>
+  </div>
+</header>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">// SORTING</div>
+      <button class="algo-btn active" onclick="loadAlgo('bubble')" id="btn-bubble">
+        <span class="algo-icon">◈</span> Bubble Sort <span class="badge">O(n²)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('selection')" id="btn-selection">
+        <span class="algo-icon">◈</span> Selection Sort <span class="badge">O(n²)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('insertion')" id="btn-insertion">
+        <span class="algo-icon">◈</span> Insertion Sort <span class="badge">O(n²)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('merge')" id="btn-merge">
+        <span class="algo-icon">◈</span> Merge Sort <span class="badge">O(n log n)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('quick')" id="btn-quick">
+        <span class="algo-icon">◈</span> Quick Sort <span class="badge">O(n log n)</span>
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">// SEARCHING</div>
+      <button class="algo-btn" onclick="loadAlgo('linear')" id="btn-linear">
+        <span class="algo-icon">▷</span> Linear Search <span class="badge">O(n)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('binary')" id="btn-binary">
+        <span class="algo-icon">▷</span> Binary Search <span class="badge">O(log n)</span>
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">// DATA STRUCTURES</div>
+      <button class="algo-btn" onclick="loadAlgo('linkedlist')" id="btn-linkedlist">
+        <span class="algo-icon">⬡</span> Linked List <span class="badge">O(n)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('bst')" id="btn-bst">
+        <span class="algo-icon">⬡</span> Binary Search Tree <span class="badge">O(log n)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('graph')" id="btn-graph">
+        <span class="algo-icon">⬡</span> Graph BFS/DFS <span class="badge">O(V+E)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('dijkstra')" id="btn-dijkstra">
+        <span class="algo-icon">⬡</span> Dijkstra's <span class="badge">O(V²)</span>
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">// LINKED LIST</div>
+      <button class="algo-btn" onclick="loadAlgo('slowfast')" id="btn-slowfast">
+        <span class="algo-icon">◎</span> Slow &amp; Fast Pointer <span class="badge">O(n)</span>
+      </button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">// TREE ALGORITHMS</div>
+      <button class="algo-btn" onclick="loadAlgo('treetraversal')" id="btn-treetraversal">
+        <span class="algo-icon">◈</span> Pre/In/Post Order <span class="badge">O(n)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('treeheight')" id="btn-treeheight">
+        <span class="algo-icon">◈</span> Tree Height <span class="badge">O(n)</span>
+      </button>
+      <button class="algo-btn" onclick="loadAlgo('treediameter')" id="btn-treediameter">
+        <span class="algo-icon">◈</span> Tree Diameter <span class="badge">O(n)</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <!-- Header Info -->
+    <div class="algo-header">
+      <div class="algo-title-wrap">
+        <h1 id="algoTitle">BUBBLE SORT</h1>
+        <div id="algoDesc" class="algo-desc">Repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. Simple but inefficient for large datasets.</div>
+        <div class="algo-meta" id="algoMeta">
+          <div class="meta-chip time">⏱ Time: O(n²)</div>
+          <div class="meta-chip space">◻ Space: O(1)</div>
+          <div class="meta-chip type">⬡ Type: Comparison</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="info-row">
+      <div class="info-card"><div class="ic-val" id="statComps">0</div><div class="ic-label">Comparisons</div></div>
+      <div class="info-card warn"><div class="ic-val" id="statSwaps">0</div><div class="ic-label">Swaps / Ops</div></div>
+      <div class="info-card info"><div class="ic-val" id="statTime">0ms</div><div class="ic-label">Time Elapsed</div></div>
+      <div class="info-card"><div class="ic-val" id="statN">20</div><div class="ic-label">Array Size</div></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls" id="controlsBar">
+      <button class="ctrl-btn btn-play" id="btnPlay" onclick="startAlgo()">▶ RUN</button>
+      <button class="ctrl-btn btn-pause" id="btnPause" onclick="pauseAlgo()" disabled>⏸ PAUSE</button>
+      <button class="ctrl-btn btn-reset" onclick="resetAlgo()">↺ RESET</button>
+      <button class="ctrl-btn btn-gen" onclick="generateData()">⟳ NEW DATA</button>
+      <div class="ctrl-sep"></div>
+      <div class="ctrl-group">
+        <span class="ctrl-label">SPEED</span>
+        <input type="range" id="speedSlider" min="1" max="10" value="5" oninput="updateSpeed(this.value)">
+        <span class="ctrl-val" id="speedVal">5</span>
+      </div>
+      <div class="ctrl-group">
+        <span class="ctrl-label">SIZE</span>
+        <input type="range" id="sizeSlider" min="5" max="50" value="20" oninput="updateSize(this.value)">
+        <span class="ctrl-val" id="sizeVal">20</span>
+      </div>
+      <!-- LL / BST / Graph extra controls injected here -->
+      <div id="extraControls"></div>
+    </div>
+
+    <!-- Visualizer -->
+    <div class="viz-area" id="vizArea">
+      <div id="vizContent" class="viz-canvas"></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <!-- Log -->
+      <div class="step-log" id="stepLog">
+        <div class="log-entry info"><span class="ts">[00:00]</span><span class="msg">System initialized. Select an algorithm and press RUN.</span></div>
+      </div>
+    </div>
+
+    <!-- Code Viewer -->
+    <div class="code-panel">
+      <div class="code-header">
+        <span class="code-title" id="codeTitle">// bubble_sort.js</span>
+        <span class="code-lang">JAVASCRIPT</span>
+      </div>
+      <pre id="codeBlock"></pre>
+    </div>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
